@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-12 col-lg-6">
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title mb-0 text-center">Demande</h3>
+            </div>
+            <div class="card-body">
+                {{ form_start(form) }}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            {{ form_label(form.debut) }}
+                            {{ form_widget(form.debut,{ 'attr': {'class':'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            {{ form_label(form.retour) }}
+                            {{ form_widget(form.retour, {'attr': {'class': 'form-control', 'rows': '5'}}) }}
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            {{ form_label(form.type) }}
+                            {{ form_widget(form.type,{ 'attr': {'class':'form-select'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                        </div>
+                    </div>
+
+                </div>
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+    </div>
+</div>

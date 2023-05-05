@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-6">
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title mb-0 text-center">Ajouter un Agent</h3>
+                </div>
+                <div class="card-body">
+                    {{ form_start(registrationForm) }}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                {{ form_label(registrationForm.email) }}
+                                {{ form_widget(registrationForm.email,{ 'attr': {'class':'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                {{ form_label(registrationForm.plainPassword) }}
+                                {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control', 'rows': '5'}}) }}
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                {{ form_label(registrationForm.nom) }}
+                                {{ form_widget(registrationForm.nom,{ 'attr': {'class':'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                {{ form_label(registrationForm.prenom) }}
+                                {{ form_widget(registrationForm.prenom, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                {{ form_label(registrationForm.telephone) }}
+                                {{ form_widget(registrationForm.telephone, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-12">
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    {{ form_end(registrationForm) }}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

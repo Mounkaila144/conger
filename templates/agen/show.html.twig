@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Agen{% endblock %}
+
+{% block body %}
+    <h1>Agen</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ agen.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ agen.email }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ agen.roles ? agen.roles|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ agen.password }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ agen.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ agen.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ agen.telephone }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_agen_index') }}">back to list</a>
+
+    <a href="{{ path('app_agen_edit', {'id': agen.id}) }}">edit</a>
+
+    {{ include('agen/_delete_form.html.twig') }}
+{% endblock %}
