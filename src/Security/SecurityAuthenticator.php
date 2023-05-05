@@ -46,9 +46,16 @@ class SecurityAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        // For example:
-         return new RedirectResponse($this->urlGenerator->generate('app_Menu'));
+        // Check if user has admin role
+        if (in_array('ROLE_ADMIN', $token->getRoleNames())) {
+            // Redirect to the admin page
+            return new RedirectResponse($this->urlGenerator->generate('app_Menu'));
+        }
+
+        // For all other users, redirect to the menu page
+        return new RedirectResponse($this->urlGenerator->generate('app_demande_me'));
     }
+
 
     protected function getLoginUrl(Request $request): string
     {
