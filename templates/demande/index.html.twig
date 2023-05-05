@@ -3,33 +3,50 @@
 {% block title %}Demande index{% endblock %}
 
 {% block body %}
-    <h1>Demande index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title mb-0 text-center">List des Demandes</h3>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="myTable" class="table nowrap align-middle table-datatable" style="width:100%">
+                <thead class="table-primary">
+                <tr>
                 <th>Id</th>
-                <th>Date</th>
-                <th>Debut</th>
-                <th>Retour</th>
-                <th>Type</th>
-                <th>State</th>
+                <th>Nom Agent</th>
+                <th>Prenom Agent</th>
+                <th>Date d'envoi</th>
+                <th>Debut du conger</th>
+                <th>Retour du conger</th>
+                <th>Type du vonger</th>
+                <th>Statut </th>
+                {% if is_granted('ROLE_ADMIN') %}
+
                 <th>actions</th>
-            </tr>
+                {% endif %}
+
+
+                </tr>
         </thead>
         <tbody>
         {% for demande in demandes %}
             <tr>
                 <td>{{ demande.id }}</td>
+                <td>{{ demande.agen.nom }}</td>
+                <td>{{ demande.agen.prenom }}</td>
                 <td>{{ demande.date ? demande.date|date('Y-m-d') : '' }}</td>
                 <td>{{ demande.debut ? demande.debut|date('Y-m-d') : '' }}</td>
                 <td>{{ demande.retour ? demande.retour|date('Y-m-d') : '' }}</td>
                 <td>{{ demande.type }}</td>
-                <td>{{ demande.state ? 'Yes' : 'No' }}</td>
+                <td>{{ demande.state ? 'Autoriser' : 'Refuser' }}</td>
+                {% if is_granted('ROLE_ADMIN') %}
+
                 <td>
-                    <a href="{{ path('app_demande_show', {'id': demande.id}) }}">show</a>
-                    <a href="{{ path('app_demande_edit', {'id': demande.id}) }}">edit</a>
+                    <a href="{{ path('app_demande_autoriser', {'id': demande.id}) }}" class="btn btn-primary btn-sm">Autoriser</a>
+                    <a href="{{ path('app_demande_refuser', {'id': demande.id}) }}" class="btn btn-danger btn-sm">Refuser</a>
                 </td>
+                {% endif %}
+
             </tr>
         {% else %}
             <tr>
@@ -37,7 +54,22 @@
             </tr>
         {% endfor %}
         </tbody>
-    </table>
+            </table>
+        </div>
+    </div>
+    {% if is_granted('ROLE_AGEN') %}
 
-    <a href="{{ path('app_demande_new') }}">Create new</a>
+    <div class="" style="bottom: 100px;position: fixed;right: 20px;z-index: 1000;">
+        <a id="" href="{{ path('app_register_agen') }}"
+           class="CustomerContracts-New btn btn-light bg-white waves-effect waves-light border-primary btn-rounded shadow-lg btn btn-icon btn-lg p-2">
+            <i class="mdi mdi-spin  mdi-plus-circle text-primary fs-36"></i>
+        </a>
+    </div>
+    {% endif %}
+
+</div>
 {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('datatable') }}
+    {% endblock %}

@@ -82,6 +82,24 @@ class DemandeController extends AbstractController
             'form' => $form,
         ]);
     }
+ #[Route('/{id}/autoriser', name: 'app_demande_autoriser', methods: ['GET', 'POST'])]
+    public function autoriser(Request $request, Demande $demande, DemandeRepository $demandeRepository): Response
+    {
+        $demande->setState(true);
+            $demandeRepository->save($demande, true);
+
+            return $this->redirectToRoute('app_demande_index', [], Response::HTTP_SEE_OTHER);
+
+    }
+#[Route('/{id}/refuser', name: 'app_demande_refuser', methods: ['GET', 'POST'])]
+    public function refuser(Request $request, Demande $demande, DemandeRepository $demandeRepository): Response
+    {
+        $demande->setState(false);
+            $demandeRepository->save($demande, true);
+
+            return $this->redirectToRoute('app_demande_index', [], Response::HTTP_SEE_OTHER);
+
+    }
 
     #[Route('/{id}', name: 'app_demande_delete', methods: ['POST'])]
     public function delete(Request $request, Demande $demande, DemandeRepository $demandeRepository): Response
